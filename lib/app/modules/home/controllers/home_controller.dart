@@ -1,23 +1,35 @@
+import 'package:flutter/material.dart';
+import 'package:footy_league/app/data/models/home_continental_data.dart';
+import 'package:footy_league/app/data/models/home_domestic_data.dart';
+import 'package:footy_league/app/data/models/home_explore_data.dart';
+import 'package:footy_league/app/data/models/home_international_data.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
+  final contentsExplore = <Explore>[];
+  final contentsDomestic = <Domestic>[];
+  final contentsContinental = <Continental>[];
+  final contentsInternational = <International>[];
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  HomeController() {
+    contentsExplore.addAll(exploreContents);
+    contentsDomestic.addAll(domesticContents);
+    contentsContinental.addAll(continentalContents);
+    contentsInternational.addAll(internationalContents);
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
+  List<Explore> get contentsE => contentsExplore;
+  List<Domestic> get contentsD => contentsDomestic;
+  List<Continental> get contentsC => contentsContinental;
+  List<International> get contentsI => contentsInternational;
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
+  final _currentPage = 0.obs;
+  int get currentPage => _currentPage.value;
 
-  void increment() => count.value++;
+  final _pageController = PageController();
+  PageController get pageController => _pageController;
+
+  void onPageChanged(int value) {
+    _currentPage.value = value;
+  }
 }

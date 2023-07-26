@@ -24,6 +24,12 @@ final textVerySmallBoldWhite = TextStyle(
   fontWeight: FontWeight.bold,
 );
 
+final textVerySmallBoldWhite5 = TextStyle(
+  color: Colors.white,
+  fontSize: SizeConfig.blockV! * 2.5,
+  fontWeight: FontWeight.bold,
+);
+
 final textLargeBoldWhite = TextStyle(
   color: Colors.white,
   fontSize: SizeConfig.blockV! * 5,
@@ -33,6 +39,13 @@ final textLargeBoldWhite = TextStyle(
 // Text with Dark Jungle Green Color (Large, Medium, and Small)
 final textVerySmallDarkJGreen = TextStyle(
   color: darkJungleGreen,
+  fontSize: SizeConfig.blockV! * 2,
+  fontWeight: FontWeight.bold,
+);
+
+// Text with Green (RYB) Color (Large, Medium, and Small)
+final textVerySmallGreenRYB = TextStyle(
+  color: greenRYB,
   fontSize: SizeConfig.blockV! * 2,
   fontWeight: FontWeight.bold,
 );
