@@ -6,6 +6,9 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const ONBOARDING = _Paths.ONBOARDING;
   static const INFORMATION = _Paths.INFORMATION;
+  static const DOMESTIC_ALL = _Paths.DOMESTIC_ALL;
+  static const CONTINENTAL_ALL = _Paths.CONTINENTAL_ALL;
+  static const INTERNATIONAL_ALL = _Paths.INTERNATIONAL_ALL;
 }
 
 abstract class _Paths {
@@ -13,4 +16,7 @@ abstract class _Paths {
   static const HOME = '/home';
   static const ONBOARDING = '/onboarding';
   static const INFORMATION = '/information';
+  static const DOMESTIC_ALL = '/domestic-all';
+  static const CONTINENTAL_ALL = '/continental-all';
+  static const INTERNATIONAL_ALL = '/international-all';
 }

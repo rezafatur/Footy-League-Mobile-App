@@ -136,7 +136,11 @@ class HomeView extends GetView<HomeController> {
 
                       // Section - See All button
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Get.offAllNamed(
+                            Routes.DOMESTIC_ALL,
+                          );
+                        },
                         child: Text(
                           "See All",
                           style: textVerySmallGreenRYB,
@@ -165,7 +169,11 @@ class HomeView extends GetView<HomeController> {
                       itemBuilder: (context, index) {
                         if (index == 5 && controller.contentsD.length > 5) {
                           return InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Get.offAllNamed(
+                                Routes.DOMESTIC_ALL,
+                              );
+                            },
                             child: SizedBox(
                               width: 150,
                               child: Container(
@@ -237,7 +245,11 @@ class HomeView extends GetView<HomeController> {
 
                       // Section - See All button
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Get.offAllNamed(
+                            Routes.CONTINENTAL_ALL,
+                          );
+                        },
                         child: Text(
                           "See All",
                           style: textVerySmallGreenRYB,
@@ -264,7 +276,11 @@ class HomeView extends GetView<HomeController> {
                       itemBuilder: (context, index) {
                         if (index == controller.contentsC.length) {
                           return InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Get.offAllNamed(
+                                Routes.CONTINENTAL_ALL,
+                              );
+                            },
                             child: SizedBox(
                               width: 150,
                               child: Container(
@@ -336,7 +352,11 @@ class HomeView extends GetView<HomeController> {
 
                       // Section - See All button
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Get.offAllNamed(
+                            Routes.INTERNATIONAL_ALL,
+                          );
+                        },
                         child: Text(
                           "See All",
                           style: textVerySmallGreenRYB,
@@ -363,7 +383,11 @@ class HomeView extends GetView<HomeController> {
                       itemBuilder: (context, index) {
                         if (index == controller.contentsI.length) {
                           return InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Get.offAllNamed(
+                                Routes.INTERNATIONAL_ALL,
+                              );
+                            },
                             child: SizedBox(
                               width: 150,
                               child: Container(
