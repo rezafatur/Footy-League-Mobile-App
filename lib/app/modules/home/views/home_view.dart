@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:footy_league/app/data/models/home_explore_data.dart';
+import 'package:footy_league/app/routes/app_pages.dart';
 import 'package:footy_league/core/theme/colors.dart';
 import 'package:get/get.dart';
 import '../../../../core/theme/text_theme.dart';
@@ -35,7 +36,7 @@ class HomeView extends GetView<HomeController> {
     SizeConfig().init(context);
 
     return Scaffold(
-      // Section - App Bar (Top Bar)
+      // Section - App Bar
       appBar: AppBar(
         backgroundColor: greenRYB,
         title: Padding(
@@ -53,7 +54,11 @@ class HomeView extends GetView<HomeController> {
               horizontal: 20,
             ),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.offAllNamed(
+                  Routes.INFORMATION,
+                );
+              },
               icon: Image.asset(
                 "assets/icons/information_dark.png",
                 height: SizeConfig.blockV! * 3.5,
@@ -85,10 +90,11 @@ class HomeView extends GetView<HomeController> {
                       ),
                       opacity: controller.currentPage == i ? 1.0 : 0.5,
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 30,
+                        ),
                         child: Image.asset(
                           content.image,
-                          height: SizeConfig.blockV! * 35,
                         ),
                       ),
                     ),
