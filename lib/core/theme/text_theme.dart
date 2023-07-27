@@ -37,7 +37,13 @@ final textLargeBoldWhite = TextStyle(
 );
 
 // Text with Dark Jungle Green Color (Large, Medium, and Small)
-final textVerySmallDarkJGreen = TextStyle(
+final textVerySmall300DarkJGreen = TextStyle(
+  color: darkJungleGreen,
+  fontSize: SizeConfig.blockV! * 2,
+  fontWeight: FontWeight.w300,
+);
+
+final textVerySmallBoldDarkJGreen = TextStyle(
   color: darkJungleGreen,
   fontSize: SizeConfig.blockV! * 2,
   fontWeight: FontWeight.bold,

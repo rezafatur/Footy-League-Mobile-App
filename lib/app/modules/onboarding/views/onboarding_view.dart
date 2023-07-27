@@ -114,7 +114,7 @@ class OnboardingView extends GetView<OnboardingController> {
                               onPressed: () {
                                 controller.completeOnboarding();
                                 Get.offAll(
-                                  const HomeView(),
+                                  HomeView(),
                                 );
                               },
                               style: ElevatedButton.styleFrom(
@@ -129,7 +129,7 @@ class OnboardingView extends GetView<OnboardingController> {
                               ),
                               child: Text(
                                 "Get Started",
-                                style: textVerySmallDarkJGreen,
+                                style: textVerySmallBoldDarkJGreen,
                               ),
                             ),
                           )
@@ -166,7 +166,7 @@ class OnboardingView extends GetView<OnboardingController> {
                                   ),
                                   child: Text(
                                     "Next",
-                                    style: textVerySmallDarkJGreen,
+                                    style: textVerySmallBoldDarkJGreen,
                                   ),
                                 ),
                               ],

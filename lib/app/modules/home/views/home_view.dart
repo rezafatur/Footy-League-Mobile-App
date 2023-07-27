@@ -5,11 +5,15 @@ import 'package:footy_league/core/theme/colors.dart';
 import 'package:get/get.dart';
 import '../../../../core/theme/text_theme.dart';
 import '../../../../core/utils/size_configs.dart';
+import '../../../controllers/bottom_nav_controller.dart';
 import '../controllers/home_controller.dart';
-import '../widgets/bottom_navigation_bar.dart';
 
 class HomeView extends GetView<HomeController> {
-  const HomeView({Key? key}) : super(key: key);
+  HomeView({Key? key}) : super(key: key);
+
+  final BottomNavController bottomNavController = Get.put(
+    BottomNavController(),
+  );
 
   // Indicator
   AnimatedContainer dotsIndicator({int? index}) {
@@ -19,14 +23,15 @@ class HomeView extends GetView<HomeController> {
         borderRadius: const BorderRadius.all(
           Radius.circular(10),
         ),
-        color: controller.currentPage == index ? greenRYB : Colors.white,
+        color:
+            controller.currentExplorerPage == index ? greenRYB : Colors.white,
       ),
       margin: const EdgeInsets.symmetric(
         horizontal: 5,
       ),
       height: 10,
       curve: Curves.easeIn,
-      width: controller.currentPage == index ? 20 : 10,
+      width: controller.currentExplorerPage == index ? 20 : 10,
     );
   }
 
@@ -88,7 +93,7 @@ class HomeView extends GetView<HomeController> {
                       duration: const Duration(
                         milliseconds: 200,
                       ),
-                      opacity: controller.currentPage == i ? 1.0 : 0.5,
+                      opacity: controller.currentExplorerPage == i ? 1.0 : 0.5,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 30,
@@ -187,7 +192,7 @@ class HomeView extends GetView<HomeController> {
                                   alignment: Alignment.center,
                                   child: Text(
                                     "See All",
-                                    style: textVerySmallDarkJGreen,
+                                    style: textVerySmallBoldDarkJGreen,
                                   ),
                                 ),
                               ),
@@ -294,7 +299,7 @@ class HomeView extends GetView<HomeController> {
                                   alignment: Alignment.center,
                                   child: Text(
                                     "See All",
-                                    style: textVerySmallDarkJGreen,
+                                    style: textVerySmallBoldDarkJGreen,
                                   ),
                                 ),
                               ),
@@ -401,7 +406,7 @@ class HomeView extends GetView<HomeController> {
                                   alignment: Alignment.center,
                                   child: Text(
                                     "See All",
-                                    style: textVerySmallDarkJGreen,
+                                    style: textVerySmallBoldDarkJGreen,
                                   ),
                                 ),
                               ),
@@ -442,11 +447,42 @@ class HomeView extends GetView<HomeController> {
           ],
         ),
       ),
-      // Add the BottomNavBar at the bottom of the scaffold
-      bottomNavigationBar: const BottomNavBar(),
-
       // Background Color with Dark Jungle Green Color
       backgroundColor: darkJungleGreen,
+
+      // Bottom Navigation Bar
+      bottomNavigationBar: Obx(
+        () => BottomNavigationBar(
+          backgroundColor: greenRYB,
+          currentIndex: bottomNavController.currentIndex.value,
+          onTap: (int i) => bottomNavController.onBottomNavBarTap(i),
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          items: [
+            BottomNavigationBarItem(
+              icon: Image.asset(
+                "assets/icons/home_light.png",
+                height: SizeConfig.blockV! * 3,
+              ),
+              label: "Home",
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset(
+                "assets/icons/search_dark.png",
+                height: SizeConfig.blockV! * 3,
+              ),
+              label: "Search",
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset(
+                "assets/icons/profile_dark.png",
+                height: SizeConfig.blockV! * 3,
+              ),
+              label: "Profile",
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
