@@ -7,6 +7,7 @@ import '../../../controllers/bottom_nav_controller.dart';
 import '../../../data/models/home_continental_data.dart';
 import '../../../data/models/home_domestic_data.dart';
 import '../../../data/models/home_international_data.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/searching_controller.dart';
 
 class SearchingView extends GetView<SearchingController> {
@@ -162,7 +163,16 @@ class SearchingView extends GetView<SearchingController> {
                           vertical: 15,
                         ),
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Get.offNamed(
+                              Routes.STANDINGS,
+                              arguments: {
+                                "code": item.code,
+                                "sourceRoute": Routes.SEARCHING,
+                                "backRoute": Routes.SEARCHING,
+                              },
+                            );
+                          },
                           child: Row(
                             children: [
                               // Section - Domestic image

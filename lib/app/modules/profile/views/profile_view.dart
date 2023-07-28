@@ -5,8 +5,8 @@ import '../../../../core/theme/colors.dart';
 import '../../../../core/theme/text_theme.dart';
 import '../../../../core/utils/size_configs.dart';
 import '../../../controllers/bottom_nav_controller.dart';
+import '../../../routes/app_pages.dart';
 import '../../continentalAll/views/continental_all_view.dart';
-import '../../domesticAll/views/domestic_all_view.dart';
 import '../../information/views/information_view.dart';
 import '../../internationalAll/views/international_all_view.dart';
 import '../controllers/profile_controller.dart';
@@ -98,10 +98,9 @@ class ProfileView extends GetView<ProfileController> {
                         builder: (controller) {
                           return InkWell(
                             onTap: () {
-                              Get.to(
-                                () => const DomesticAllView(
-                                  fromProfile: true,
-                                ),
+                              Get.offNamed(
+                                Routes.DOMESTIC_ALL,
+                                arguments: Routes.PROFILE,
                               );
                             },
                             child: SizedBox(

@@ -11,6 +11,7 @@ abstract class Routes {
   static const INTERNATIONAL_ALL = _Paths.INTERNATIONAL_ALL;
   static const SEARCHING = _Paths.SEARCHING;
   static const PROFILE = _Paths.PROFILE;
+  static const STANDINGS = _Paths.STANDINGS;
 }
 
 abstract class _Paths {
@@ -23,4 +24,5 @@ abstract class _Paths {
   static const INTERNATIONAL_ALL = '/international-all';
   static const SEARCHING = '/searching';
   static const PROFILE = '/profile';
+  static const STANDINGS = '/standings';
 }

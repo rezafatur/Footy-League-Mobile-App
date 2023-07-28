@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+
 import '../modules/continentalAll/bindings/continental_all_binding.dart';
 import '../modules/continentalAll/views/continental_all_view.dart';
 import '../modules/domesticAll/bindings/domestic_all_binding.dart';
@@ -15,6 +16,8 @@ import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/searching/bindings/searching_binding.dart';
 import '../modules/searching/views/searching_view.dart';
+import '../modules/standings/bindings/standings_binding.dart';
+import '../modules/standings/views/standings_view.dart';
 
 part 'app_routes.dart';
 
@@ -44,9 +47,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DOMESTIC_ALL,
-      page: () => const DomesticAllView(
-        fromProfile: false,
-      ),
+      page: () => DomesticAllView(),
       binding: DomesticAllBinding(),
     ),
     GetPage(
@@ -74,6 +75,11 @@ class AppPages {
       page: () => ProfileView(),
       binding: ProfileBinding(),
       transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: _Paths.STANDINGS,
+      page: () => StandingsView(),
+      binding: StandingsBinding(),
     ),
   ];
 }
