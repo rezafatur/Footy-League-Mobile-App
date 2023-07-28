@@ -8,7 +8,11 @@ import '../../../../core/utils/size_configs.dart';
 import '../controllers/information_controller.dart';
 
 class InformationView extends GetView<InformationController> {
-  const InformationView({Key? key}) : super(key: key);
+  // Parameter to determine the source from profile page
+  final bool fromProfile;
+
+  const InformationView({Key? key, required this.fromProfile})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +31,15 @@ class InformationView extends GetView<InformationController> {
             children: [
               GestureDetector(
                 onTap: () {
-                  Get.offAllNamed(
-                    Routes.HOME,
-                  );
+                  if (fromProfile) {
+                    Get.offAllNamed(
+                      Routes.PROFILE,
+                    );
+                  } else {
+                    Get.offAllNamed(
+                      Routes.HOME,
+                    );
+                  }
                 },
                 child: Image.asset(
                   "assets/icons/back_dark.png",

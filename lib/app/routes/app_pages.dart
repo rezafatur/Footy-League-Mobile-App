@@ -37,22 +37,30 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.INFORMATION,
-      page: () => const InformationView(),
+      page: () => const InformationView(
+        fromProfile: false,
+      ),
       binding: InformationBinding(),
     ),
     GetPage(
       name: _Paths.DOMESTIC_ALL,
-      page: () => const DomesticAllView(),
+      page: () => const DomesticAllView(
+        fromProfile: false,
+      ),
       binding: DomesticAllBinding(),
     ),
     GetPage(
       name: _Paths.CONTINENTAL_ALL,
-      page: () => const ContinentalAllView(),
+      page: () => const ContinentalAllView(
+        fromProfile: false,
+      ),
       binding: ContinentalAllBinding(),
     ),
     GetPage(
       name: _Paths.INTERNATIONAL_ALL,
-      page: () => const InternationalAllView(),
+      page: () => const InternationalAllView(
+        fromProfile: false,
+      ),
       binding: InternationalAllBinding(),
     ),
     GetPage(

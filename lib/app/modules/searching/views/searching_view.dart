@@ -70,10 +70,14 @@ class SearchingView extends GetView<SearchingController> {
               ),
               child: ListView(
                 children: [
+                  const SizedBox(
+                    height: 15,
+                  ),
+
                   // Section - Results text
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                      vertical: 30,
+                      vertical: 15,
                     ),
                     child: Text(
                       "Results :",
@@ -83,6 +87,9 @@ class SearchingView extends GetView<SearchingController> {
 
                   // Section - Display filtered continental data
                   if (controller.filteredContinentals.isNotEmpty) ...[
+                    const SizedBox(
+                      height: 15,
+                    ),
                     Text(
                       "Continental",
                       style: textVerySmallBoldWhite5,

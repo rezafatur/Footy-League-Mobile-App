@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:footy_league/app/data/models/home_explore_data.dart';
+import 'package:footy_league/app/modules/continentalAll/views/continental_all_view.dart';
+import 'package:footy_league/app/modules/domesticAll/views/domestic_all_view.dart';
+import 'package:footy_league/app/modules/internationalAll/views/international_all_view.dart';
 import 'package:footy_league/app/routes/app_pages.dart';
 import 'package:footy_league/core/theme/colors.dart';
 import 'package:get/get.dart';
 import '../../../../core/theme/text_theme.dart';
 import '../../../../core/utils/size_configs.dart';
 import '../../../controllers/bottom_nav_controller.dart';
+import '../../information/views/information_view.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -60,8 +64,10 @@ class HomeView extends GetView<HomeController> {
             ),
             child: IconButton(
               onPressed: () {
-                Get.offAllNamed(
-                  Routes.INFORMATION,
+                Get.to(
+                  () => const InformationView(
+                    fromProfile: false,
+                  ),
                 );
               },
               icon: Image.asset(
@@ -142,8 +148,10 @@ class HomeView extends GetView<HomeController> {
                       // Section - See All button
                       InkWell(
                         onTap: () {
-                          Get.offAllNamed(
-                            Routes.DOMESTIC_ALL,
+                          Get.to(
+                            () => const DomesticAllView(
+                              fromProfile: false,
+                            ),
                           );
                         },
                         child: Text(
@@ -251,8 +259,10 @@ class HomeView extends GetView<HomeController> {
                       // Section - See All button
                       InkWell(
                         onTap: () {
-                          Get.offAllNamed(
-                            Routes.CONTINENTAL_ALL,
+                          Get.to(
+                            () => const ContinentalAllView(
+                              fromProfile: false,
+                            ),
                           );
                         },
                         child: Text(
@@ -358,8 +368,10 @@ class HomeView extends GetView<HomeController> {
                       // Section - See All button
                       InkWell(
                         onTap: () {
-                          Get.offAllNamed(
-                            Routes.INTERNATIONAL_ALL,
+                          Get.to(
+                            () => const InternationalAllView(
+                              fromProfile: false,
+                            ),
                           );
                         },
                         child: Text(

@@ -30,6 +30,12 @@ final textVerySmallBoldWhite5 = TextStyle(
   fontWeight: FontWeight.bold,
 );
 
+final textSmallBoldWhite = TextStyle(
+  color: Colors.white,
+  fontSize: SizeConfig.blockV! * 3.5,
+  fontWeight: FontWeight.bold,
+);
+
 final textLargeBoldWhite = TextStyle(
   color: Colors.white,
   fontSize: SizeConfig.blockV! * 5,
