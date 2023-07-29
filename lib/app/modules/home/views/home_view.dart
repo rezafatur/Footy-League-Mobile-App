@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:footy_league/app/data/models/home_explore_data.dart';
-import 'package:footy_league/app/modules/continentalAll/views/continental_all_view.dart';
 import 'package:footy_league/app/modules/internationalAll/views/international_all_view.dart';
 import 'package:footy_league/app/routes/app_pages.dart';
 import 'package:footy_league/core/theme/colors.dart';
@@ -267,10 +266,9 @@ class HomeView extends GetView<HomeController> {
                       // Section - See All button
                       InkWell(
                         onTap: () {
-                          Get.to(
-                            () => const ContinentalAllView(
-                              fromProfile: false,
-                            ),
+                          Get.offNamed(
+                            Routes.CONTINENTAL_ALL,
+                            arguments: Routes.HOME,
                           );
                         },
                         child: Text(
@@ -300,8 +298,9 @@ class HomeView extends GetView<HomeController> {
                         if (index == controller.contentsC.length) {
                           return InkWell(
                             onTap: () {
-                              Get.offAllNamed(
+                              Get.offNamed(
                                 Routes.CONTINENTAL_ALL,
+                                arguments: Routes.HOME,
                               );
                             },
                             child: SizedBox(
@@ -325,7 +324,16 @@ class HomeView extends GetView<HomeController> {
                           );
                         }
                         return InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Get.offNamed(
+                              Routes.STANDINGS,
+                              arguments: {
+                                "code": controller.contentsC[index].code,
+                                "sourceRoute": Routes.HOME,
+                                "backRoute": Routes.HOME,
+                              },
+                            );
+                          },
                           child: Container(
                             width: 150,
                             decoration: BoxDecoration(

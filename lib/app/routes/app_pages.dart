@@ -52,9 +52,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.CONTINENTAL_ALL,
-      page: () => const ContinentalAllView(
-        fromProfile: false,
-      ),
+      page: () => ContinentalAllView(),
       binding: ContinentalAllBinding(),
     ),
     GetPage(

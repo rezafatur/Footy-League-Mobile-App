@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intl/intl.dart';
 import '../../../../core/theme/text_theme.dart';
 import '../../../../core/utils/size_configs.dart';
 
@@ -15,15 +14,13 @@ class PPLStandingsWidget extends StatelessWidget {
     // Initializing the screen width and height
     SizeConfig().init(context);
 
-    // Retrieve the time and date in real time for the current year
-    DateTime now = DateTime.now();
-    String currentYear = DateFormat('y').format(now);
+    // Extracting data into variables
+    var season = standingsData[0]["season"];
+    var standings = standingsData[0]["standings"];
 
-    // retrieve the time and date in real time for the next year
-    DateTime nextYearDateTime = now.add(
-      const Duration(days: 365),
-    );
-    String nextYear = DateFormat('y').format(nextYearDateTime);
+    // Displaying the extracted data
+    // print("Season: $season");
+    // print("Standings: $standings");
 
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
@@ -38,7 +35,7 @@ class PPLStandingsWidget extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "Season : $currentYear - $nextYear",
+                    "Season : ${season["startDate"].toString().substring(0, 4)} - ${season["endDate"].toString().substring(0, 4)}",
                     style: textVerySmallBoldWhite5,
                   ),
                 ),
@@ -171,178 +168,197 @@ class PPLStandingsWidget extends StatelessWidget {
           ),
 
           // Section - Standings
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: DataTable(
-              columnSpacing: 10,
-              columns: [
-                DataColumn(
-                  label: SizedBox(
-                    width: 35,
-                    child: Text(
-                      "Pos",
-                      style: textVerySmallBoldWhite,
-                    ),
-                  ),
-                ),
-                DataColumn(
-                  label: SizedBox(
-                    width: 95,
-                    child: Text(
-                      "Club",
-                      style: textVerySmallBoldWhite,
-                    ),
-                  ),
-                ),
-                DataColumn(
-                  label: SizedBox(
-                    width: 35,
-                    child: Text(
-                      "PL",
-                      style: textVerySmallBoldWhite,
-                    ),
-                  ),
-                ),
-                DataColumn(
-                  label: SizedBox(
-                    width: 35,
-                    child: Text(
-                      "W",
-                      style: textVerySmallBoldWhite,
-                    ),
-                  ),
-                ),
-                DataColumn(
-                  label: SizedBox(
-                    width: 35,
-                    child: Text(
-                      "D",
-                      style: textVerySmallBoldWhite,
-                    ),
-                  ),
-                ),
-                DataColumn(
-                  label: SizedBox(
-                    width: 35,
-                    child: Text(
-                      "L",
-                      style: textVerySmallBoldWhite,
-                    ),
-                  ),
-                ),
-                DataColumn(
-                  label: SizedBox(
-                    width: 35,
-                    child: Text(
-                      "GD",
-                      style: textVerySmallBoldWhite,
-                    ),
-                  ),
-                ),
-                DataColumn(
-                  label: SizedBox(
-                    width: 35,
-                    child: Text(
-                      "Pts",
-                      style: textVerySmallBoldWhite,
-                    ),
-                  ),
-                ),
-              ],
-              rows: standingsData.map(
-                (teamData) {
-                  final position = teamData['position'];
-                  final teamName = teamData['team']['tla'];
-                  final crestUrl = teamData['team']['crest'];
-                  final playedGames = teamData['playedGames'];
-                  final won = teamData['won'];
-                  final draw = teamData['draw'];
-                  final lost = teamData['lost'];
-                  final goalDifference = teamData['goalDifference'];
-                  final points = teamData['points'];
-
-                  // Check if the image format is SVG
-                  final isSvg = crestUrl.endsWith('.svg');
-
-                  Widget crestWidget;
-                  if (isSvg) {
-                    // Use SvgPicture to load the SVG image
-                    crestWidget = SvgPicture.network(
-                      crestUrl,
-                      width: 24, // Adjust the width of the crest image
-                    );
-                  } else {
-                    // Use Image.network to load other image formats (e.g., PNG, JPEG)
-                    crestWidget = Image.network(
-                      crestUrl,
-                      width: 24, // Adjust the width of the crest image
-                    );
-                  }
-
-                  return DataRow(
-                    cells: [
-                      DataCell(
-                        Text(
-                          "$position",
-                          style: textVerySmall300White,
+          for (var regularStandings in standings)
+            Column(
+              children: [
+                // Section - Table
+                SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  child: DataTable(
+                    columnSpacing: 10,
+                    columns: [
+                      DataColumn(
+                        label: SizedBox(
+                          width: 35,
+                          child: Text(
+                            "Pos",
+                            style: textVerySmallBoldWhite,
+                          ),
                         ),
                       ),
-                      DataCell(
-                        Row(
-                          children: [
-                            crestWidget,
-                            const SizedBox(
-                              width: 15,
-                            ),
-                            Text(
-                              teamName,
-                              style: textVerySmallBoldWhite,
-                            ),
-                          ],
+                      DataColumn(
+                        label: SizedBox(
+                          width: 95,
+                          child: Text(
+                            "Club",
+                            style: textVerySmallBoldWhite,
+                          ),
                         ),
                       ),
-                      DataCell(
-                        Text(
-                          "$playedGames",
-                          style: textVerySmall300White,
+                      DataColumn(
+                        label: SizedBox(
+                          width: 35,
+                          child: Text(
+                            "PG",
+                            style: textVerySmallBoldWhite,
+                          ),
                         ),
                       ),
-                      DataCell(
-                        Text(
-                          "$won",
-                          style: textVerySmall300White,
+                      DataColumn(
+                        label: SizedBox(
+                          width: 35,
+                          child: Text(
+                            "W",
+                            style: textVerySmallBoldWhite,
+                          ),
                         ),
                       ),
-                      DataCell(
-                        Text(
-                          "$draw",
-                          style: textVerySmall300White,
+                      DataColumn(
+                        label: SizedBox(
+                          width: 35,
+                          child: Text(
+                            "D",
+                            style: textVerySmallBoldWhite,
+                          ),
                         ),
                       ),
-                      DataCell(
-                        Text(
-                          "$lost",
-                          style: textVerySmall300White,
+                      DataColumn(
+                        label: SizedBox(
+                          width: 35,
+                          child: Text(
+                            "L",
+                            style: textVerySmallBoldWhite,
+                          ),
                         ),
                       ),
-                      DataCell(
-                        Text(
-                          "$goalDifference",
-                          style: textVerySmall300White,
+                      DataColumn(
+                        label: SizedBox(
+                          width: 35,
+                          child: Text(
+                            "GF",
+                            style: textVerySmallBoldWhite,
+                          ),
                         ),
                       ),
-                      DataCell(
-                        Text(
-                          "$points",
-                          style: textVerySmallBoldWhite,
+                      DataColumn(
+                        label: SizedBox(
+                          width: 35,
+                          child: Text(
+                            "GA",
+                            style: textVerySmallBoldWhite,
+                          ),
+                        ),
+                      ),
+                      DataColumn(
+                        label: SizedBox(
+                          width: 35,
+                          child: Text(
+                            "GD",
+                            style: textVerySmallBoldWhite,
+                          ),
+                        ),
+                      ),
+                      DataColumn(
+                        label: SizedBox(
+                          width: 35,
+                          child: Text(
+                            "Pts",
+                            style: textVerySmallBoldWhite,
+                          ),
                         ),
                       ),
                     ],
-                  );
-                },
-              ).toList(),
+                    rows: [
+                      for (var teamData in regularStandings["table"])
+                        DataRow(
+                          cells: [
+                            DataCell(
+                              Text(
+                                teamData["position"].toString(),
+                                style: textVerySmall300White,
+                              ),
+                            ),
+                            DataCell(
+                              Row(
+                                children: [
+                                  if (teamData["team"]["crest"] != null)
+                                    teamData["team"]["crest"]
+                                            .toString()
+                                            .endsWith(".svg")
+                                        ? SvgPicture.network(
+                                            teamData["team"]["crest"],
+                                            width: 30,
+                                          )
+                                        : Image.network(
+                                            teamData["team"]["crest"],
+                                            width: 30,
+                                          ),
+                                  const SizedBox(
+                                    width: 15,
+                                  ),
+                                  Text(
+                                    teamData["team"]["tla"],
+                                    style: textVerySmallBoldWhite,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            DataCell(
+                              Text(
+                                teamData["playedGames"].toString(),
+                                style: textVerySmall300White,
+                              ),
+                            ),
+                            DataCell(
+                              Text(
+                                teamData["won"].toString(),
+                                style: textVerySmall300White,
+                              ),
+                            ),
+                            DataCell(
+                              Text(
+                                teamData["draw"].toString(),
+                                style: textVerySmall300White,
+                              ),
+                            ),
+                            DataCell(
+                              Text(
+                                teamData["lost"].toString(),
+                                style: textVerySmall300White,
+                              ),
+                            ),
+                            DataCell(
+                              Text(
+                                teamData["goalsFor"].toString(),
+                                style: textVerySmall300White,
+                              ),
+                            ),
+                            DataCell(
+                              Text(
+                                teamData["goalsAgainst"].toString(),
+                                style: textVerySmall300White,
+                              ),
+                            ),
+                            DataCell(
+                              Text(
+                                teamData["goalDifference"].toString(),
+                                style: textVerySmall300White,
+                              ),
+                            ),
+                            DataCell(
+                              Text(
+                                teamData["points"].toString(),
+                                style: textVerySmallBoldWhite,
+                              ),
+                            ),
+                          ],
+                        ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ),
 
           // Section - Border
           SizedBox(

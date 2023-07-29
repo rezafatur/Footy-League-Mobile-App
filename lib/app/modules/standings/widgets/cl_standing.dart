@@ -3,10 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../core/theme/text_theme.dart';
 import '../../../../core/utils/size_configs.dart';
 
-class FL1StandingsWidget extends StatelessWidget {
+class CLStandingsWidget extends StatelessWidget {
   final List<Map<String, dynamic>> standingsData;
 
-  const FL1StandingsWidget({required this.standingsData, Key? key})
+  const CLStandingsWidget({required this.standingsData, Key? key})
       : super(key: key);
 
   @override
@@ -15,10 +15,12 @@ class FL1StandingsWidget extends StatelessWidget {
     SizeConfig().init(context);
 
     // Extracting data into variables
+    var competition = standingsData[0]["competition"];
     var season = standingsData[0]["season"];
     var standings = standingsData[0]["standings"];
 
     // Displaying the extracted data
+    // print("Competition: $competition");
     // print("Season: $season");
     // print("Standings: $standings");
 
@@ -43,7 +45,7 @@ class FL1StandingsWidget extends StatelessWidget {
                   height: 15,
                 ),
 
-                // Section - FL1 Image and Name
+                // Section - CL Image and Name
                 Row(
                   children: [
                     // Section - Image
@@ -61,8 +63,8 @@ class FL1StandingsWidget extends StatelessWidget {
                           padding: const EdgeInsets.all(
                             15,
                           ),
-                          child: Image.asset(
-                            "assets/images/domesticLigue1.png",
+                          child: Image.network(
+                            "${competition["emblem"]}",
                           ),
                         ),
                       ),
@@ -77,7 +79,7 @@ class FL1StandingsWidget extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "Ligue 1",
+                          "${competition["name"]}",
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           style: textVerySmall300White,
@@ -108,7 +110,7 @@ class FL1StandingsWidget extends StatelessWidget {
                   height: 15,
                 ),
 
-                // Section - LW Image and Name
+                // Section - Last Winner Image and Name
                 Row(
                   children: [
                     // Section - Image
@@ -127,7 +129,7 @@ class FL1StandingsWidget extends StatelessWidget {
                             15,
                           ),
                           child: Image.asset(
-                            "assets/images/lastwinnerFL1.png",
+                            "assets/images/lastwinnerCL.png",
                           ),
                         ),
                       ),
@@ -142,7 +144,7 @@ class FL1StandingsWidget extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "Paris Saint-Germain F.C.",
+                          "Real Madrid C.F.",
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           style: textVerySmall300White,
@@ -158,19 +160,36 @@ class FL1StandingsWidget extends StatelessWidget {
             height: 30,
           ),
 
-          // Section - Border
-          SizedBox(
-            width: SizeConfig.screenW,
-            height: 1,
-            child: Container(
-              color: Colors.white,
-            ),
-          ),
-
           // Section - Standings
-          for (var regularStandings in standings)
+          for (var groupStandings in standings)
             Column(
               children: [
+                // Section - Group
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 30,
+                  ),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "${groupStandings["group"]}",
+                      style: textVerySmallBoldWhite5,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+
+                // Section - Border
+                SizedBox(
+                  width: SizeConfig.screenW,
+                  height: 1,
+                  child: Container(
+                    color: Colors.white,
+                  ),
+                ),
+
                 // Section - Table
                 SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
@@ -270,7 +289,7 @@ class FL1StandingsWidget extends StatelessWidget {
                       ),
                     ],
                     rows: [
-                      for (var teamData in regularStandings["table"])
+                      for (var teamData in groupStandings["table"])
                         DataRow(
                           cells: [
                             DataCell(
@@ -285,7 +304,7 @@ class FL1StandingsWidget extends StatelessWidget {
                                   if (teamData["team"]["crest"] != null)
                                     teamData["team"]["crest"]
                                             .toString()
-                                            .endsWith(".svg")
+                                            .endsWith('.svg')
                                         ? SvgPicture.network(
                                             teamData["team"]["crest"],
                                             width: 30,
@@ -357,20 +376,12 @@ class FL1StandingsWidget extends StatelessWidget {
                     ],
                   ),
                 ),
+
+                const SizedBox(
+                  height: 30,
+                ),
               ],
             ),
-
-          // Section - Border
-          SizedBox(
-            width: SizeConfig.screenW,
-            height: 1,
-            child: Container(
-              color: Colors.white,
-            ),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
         ],
       ),
     );

@@ -7,6 +7,8 @@ import '../../../routes/app_pages.dart';
 import '../controllers/standings_controller.dart';
 import '../widgets/bl1_standings.dart';
 import '../widgets/bsa_standings.dart';
+import '../widgets/cl_standing.dart';
+import '../widgets/cli_standings.dart';
 import '../widgets/ded_standings.dart';
 import '../widgets/elc_standings.dart';
 import '../widgets/fl1.standings.dart';
@@ -66,6 +68,14 @@ class StandingsView extends GetView<StandingsController> {
           return BSAStandingsWidget(
             standingsData: controller.standingsData,
           );
+        case "CL":
+          return CLStandingsWidget(
+            standingsData: controller.standingsData,
+          );
+        case "CLI":
+          return CLIStandingsWidget(
+            standingsData: controller.standingsData,
+          );
         default:
           return Container();
       }
@@ -97,7 +107,10 @@ class StandingsView extends GetView<StandingsController> {
                       );
                       break;
                     case Routes.CONTINENTAL_ALL:
-                      Get.offAllNamed(Routes.CONTINENTAL_ALL);
+                      Get.offAllNamed(
+                        Routes.CONTINENTAL_ALL,
+                        arguments: backRoute,
+                      );
                       break;
                     case Routes.INTERNATIONAL_ALL:
                       Get.offAllNamed(Routes.INTERNATIONAL_ALL);

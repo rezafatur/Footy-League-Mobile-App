@@ -34,18 +34,7 @@ class StandingsController extends GetxController {
       if (response.statusCode == 200) {
         // Parse JSON data into data variables
         var data = json.decode(response.body);
-
-        // Check if the response contains "standings" and "table"
-        if (data.containsKey("standings") &&
-            data["standings"].isNotEmpty &&
-            data["standings"][0].containsKey("table")) {
-          standingsData.value = List<Map<String, dynamic>>.from(
-            data["standings"][0]["table"],
-          );
-        } else {
-          // If "standings" or "table" is missing, handle accordingly
-          print("No standings data available.");
-        }
+        standingsData.value = [data];
       }
       // Loading data is complete
       isLoading.value = false;
