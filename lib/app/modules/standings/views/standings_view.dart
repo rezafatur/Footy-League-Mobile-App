@@ -10,12 +10,14 @@ import '../widgets/bsa_standings.dart';
 import '../widgets/cl_standing.dart';
 import '../widgets/cli_standings.dart';
 import '../widgets/ded_standings.dart';
+import '../widgets/ec_standings.dart';
 import '../widgets/elc_standings.dart';
 import '../widgets/fl1.standings.dart';
 import '../widgets/pd_standings.dart';
 import '../widgets/pl_standings.dart';
 import '../widgets/ppl_standings.dart';
 import '../widgets/sa_standings.dart';
+import '../widgets/wc_standings.dart';
 
 class StandingsView extends GetView<StandingsController> {
   StandingsView({Key? key}) : super(key: key);
@@ -76,6 +78,10 @@ class StandingsView extends GetView<StandingsController> {
           return CLIStandingsWidget(
             standingsData: controller.standingsData,
           );
+        case "WC":
+          return const WCStandingsWidget();
+        case "EC":
+          return const ECStandingsWidget();
         default:
           return Container();
       }
@@ -113,7 +119,10 @@ class StandingsView extends GetView<StandingsController> {
                       );
                       break;
                     case Routes.INTERNATIONAL_ALL:
-                      Get.offAllNamed(Routes.INTERNATIONAL_ALL);
+                      Get.offAllNamed(
+                        Routes.INTERNATIONAL_ALL,
+                        arguments: backRoute,
+                      );
                       break;
                     default:
                       Get.offAllNamed(Routes.HOME);
@@ -148,11 +157,15 @@ class StandingsView extends GetView<StandingsController> {
             );
           } else {
             if (controller.standingsData.isEmpty) {
-              return const Center(
-                child: Text(
-                  'No standings data available.',
-                  style: TextStyle(fontSize: 20),
-                ),
+              return Center(
+                child: code == "WC"
+                    ? getStandingsWidget(code)
+                    : code == "EC"
+                        ? getStandingsWidget(code)
+                        : Text(
+                            'No standings data available.',
+                            style: textVerySmallBoldWhite5,
+                          ),
               );
             } else {
               return getStandingsWidget(code);

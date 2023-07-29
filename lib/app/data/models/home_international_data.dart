@@ -12,12 +12,12 @@ class International {
 
 List<International> internationalContents = [
   International(
-    image: "assets/images/InternationalWorldCup.png",
+    image: "assets/images/internationalWC.png",
     name: "FIFA World Cup",
     code: "WC",
   ),
   International(
-    image: "assets/images/InternationalEURO.png",
+    image: "assets/images/internationalEC.png",
     name: "European Championship",
     code: "EC",
   ),

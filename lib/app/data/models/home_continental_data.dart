@@ -18,7 +18,7 @@ List<Continental> continentalContents = [
   ),
   Continental(
     image: "assets/images/continentalLibertadores.png",
-    name: "CONMEBOL Libertadores",
+    name: "CONMEBOL Copa Libertadores",
     code: "CLI",
   ),
 ];

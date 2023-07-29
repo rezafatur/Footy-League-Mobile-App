@@ -57,9 +57,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.INTERNATIONAL_ALL,
-      page: () => const InternationalAllView(
-        fromProfile: false,
-      ),
+      page: () => InternationalAllView(),
       binding: InternationalAllBinding(),
     ),
     GetPage(

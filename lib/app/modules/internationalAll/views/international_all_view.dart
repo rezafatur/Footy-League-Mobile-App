@@ -7,11 +7,9 @@ import '../../../routes/app_pages.dart';
 import '../controllers/international_all_controller.dart';
 
 class InternationalAllView extends GetView<InternationalAllController> {
-  // Parameter to determine the source from profile page
-  final bool fromProfile;
+  InternationalAllView({Key? key}) : super(key: key);
 
-  const InternationalAllView({Key? key, required this.fromProfile})
-      : super(key: key);
+  final String sourceRoute = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +32,15 @@ class InternationalAllView extends GetView<InternationalAllController> {
             children: [
               GestureDetector(
                 onTap: () {
-                  if (fromProfile) {
-                    Get.offAllNamed(
-                      Routes.PROFILE,
-                    );
-                  } else {
-                    Get.offAllNamed(
-                      Routes.HOME,
-                    );
+                  switch (sourceRoute) {
+                    case Routes.HOME:
+                      Get.offAllNamed(Routes.HOME);
+                      break;
+                    case Routes.PROFILE:
+                      Get.offAllNamed(Routes.PROFILE);
+                      break;
+                    default:
+                      Get.offAllNamed(Routes.HOME);
                   }
                 },
                 child: Image.asset(
@@ -81,7 +80,16 @@ class InternationalAllView extends GetView<InternationalAllController> {
             controller.contentsI.length,
             (index) {
               return InkWell(
-                onTap: () {},
+                onTap: () {
+                  Get.offNamed(
+                    Routes.STANDINGS,
+                    arguments: {
+                      "code": controller.contentsI[index].code,
+                      "sourceRoute": Routes.INTERNATIONAL_ALL,
+                      "backRoute": sourceRoute,
+                    },
+                  );
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
