@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../../core/theme/text_theme.dart';
 import '../../../../core/utils/size_configs.dart';
 import '../../../data/models/onboarding_data.dart';
-import '../../home/views/home_view.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/onboarding_controller.dart';
 
 class OnboardingView extends GetView<OnboardingController> {
@@ -113,8 +113,8 @@ class OnboardingView extends GetView<OnboardingController> {
                             child: ElevatedButton(
                               onPressed: () {
                                 controller.completeOnboarding();
-                                Get.offAll(
-                                  HomeView(),
+                                Get.offAllNamed(
+                                  Routes.HOME,
                                 );
                               },
                               style: ElevatedButton.styleFrom(

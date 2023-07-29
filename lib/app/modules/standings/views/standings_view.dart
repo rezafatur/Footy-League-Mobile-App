@@ -153,7 +153,9 @@ class StandingsView extends GetView<StandingsController> {
         () {
           if (controller.isLoading.value) {
             return const Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                color: greenRYB,
+              ),
             );
           } else {
             if (controller.standingsData.isEmpty) {

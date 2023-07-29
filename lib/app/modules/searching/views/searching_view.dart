@@ -117,6 +117,7 @@ class SearchingView extends GetView<SearchingController> {
                               Expanded(
                                 flex: 1,
                                 child: Container(
+                                  width: 75,
                                   height: 75,
                                   decoration: BoxDecoration(
                                     color: Colors.white,
@@ -188,6 +189,7 @@ class SearchingView extends GetView<SearchingController> {
                               Expanded(
                                 flex: 1,
                                 child: Container(
+                                  width: 75,
                                   height: 75,
                                   decoration: BoxDecoration(
                                     color: Colors.white,
@@ -259,6 +261,7 @@ class SearchingView extends GetView<SearchingController> {
                               Expanded(
                                 flex: 1,
                                 child: Container(
+                                  width: 75,
                                   height: 75,
                                   decoration: BoxDecoration(
                                     color: Colors.white,
