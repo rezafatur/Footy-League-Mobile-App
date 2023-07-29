@@ -6,8 +6,14 @@ import '../../../../core/utils/size_configs.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/standings_controller.dart';
 import '../widgets/bl1_standings.dart';
+import '../widgets/bsa_standings.dart';
+import '../widgets/ded_standings.dart';
+import '../widgets/elc_standings.dart';
+import '../widgets/fl1.standings.dart';
 import '../widgets/pd_standings.dart';
 import '../widgets/pl_standings.dart';
+import '../widgets/ppl_standings.dart';
+import '../widgets/sa_standings.dart';
 
 class StandingsView extends GetView<StandingsController> {
   StandingsView({Key? key}) : super(key: key);
@@ -24,12 +30,42 @@ class StandingsView extends GetView<StandingsController> {
     // Helper function to get the appropriate standings widget based on code
     Widget getStandingsWidget(String code) {
       switch (code) {
-        case 'PL':
-          return PLStandingsWidget(standingsData: controller.standingsData);
-        case 'PD':
-          return const PDStandingsWidget();
-        case 'BL1':
-          return const BL1StandingsWidget();
+        case "PL":
+          return PLStandingsWidget(
+            standingsData: controller.standingsData,
+          );
+        case "PD":
+          return PDStandingsWidget(
+            standingsData: controller.standingsData,
+          );
+        case "SA":
+          return SAStandingsWidget(
+            standingsData: controller.standingsData,
+          );
+        case "BL1":
+          return BL1StandingsWidget(
+            standingsData: controller.standingsData,
+          );
+        case "DED":
+          return DEDStandingsWidget(
+            standingsData: controller.standingsData,
+          );
+        case "FL1":
+          return FL1StandingsWidget(
+            standingsData: controller.standingsData,
+          );
+        case "PPL":
+          return PPLStandingsWidget(
+            standingsData: controller.standingsData,
+          );
+        case "ELC":
+          return ELCStandingsWidget(
+            standingsData: controller.standingsData,
+          );
+        case "BSA":
+          return BSAStandingsWidget(
+            standingsData: controller.standingsData,
+          );
         default:
           return Container();
       }

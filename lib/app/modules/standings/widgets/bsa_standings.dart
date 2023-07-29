@@ -4,10 +4,10 @@ import 'package:intl/intl.dart';
 import '../../../../core/theme/text_theme.dart';
 import '../../../../core/utils/size_configs.dart';
 
-class PLStandingsWidget extends StatelessWidget {
+class BSAStandingsWidget extends StatelessWidget {
   final List<Map<String, dynamic>> standingsData;
 
-  const PLStandingsWidget({required this.standingsData, Key? key})
+  const BSAStandingsWidget({required this.standingsData, Key? key})
       : super(key: key);
 
   @override
@@ -18,12 +18,6 @@ class PLStandingsWidget extends StatelessWidget {
     // Retrieve the time and date in real time for the current year
     DateTime now = DateTime.now();
     String currentYear = DateFormat('y').format(now);
-
-    // retrieve the time and date in real time for the next year
-    DateTime nextYearDateTime = now.add(
-      const Duration(days: 365),
-    );
-    String nextYear = DateFormat('y').format(nextYearDateTime);
 
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
@@ -38,7 +32,7 @@ class PLStandingsWidget extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "Season : $currentYear - $nextYear",
+                    "Season : $currentYear",
                     style: textVerySmallBoldWhite5,
                   ),
                 ),
@@ -46,7 +40,7 @@ class PLStandingsWidget extends StatelessWidget {
                   height: 15,
                 ),
 
-                // Section - PL Image and Name
+                // Section - BSA Image and Name
                 Row(
                   children: [
                     // Section - Image
@@ -65,7 +59,7 @@ class PLStandingsWidget extends StatelessWidget {
                             15,
                           ),
                           child: Image.asset(
-                            "assets/images/domesticPL.png",
+                            "assets/images/domesticBrasileiroSérieA.png",
                           ),
                         ),
                       ),
@@ -80,7 +74,7 @@ class PLStandingsWidget extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "English Premier League",
+                          "Campeonato Brasileiro Série A",
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           style: textVerySmall300White,
@@ -130,7 +124,7 @@ class PLStandingsWidget extends StatelessWidget {
                             15,
                           ),
                           child: Image.asset(
-                            "assets/images/lastwinnerPL.png",
+                            "assets/images/lastwinnerBSA.png",
                           ),
                         ),
                       ),
@@ -145,7 +139,7 @@ class PLStandingsWidget extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "Man City",
+                          "SE Palmeiras",
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           style: textVerySmall300White,

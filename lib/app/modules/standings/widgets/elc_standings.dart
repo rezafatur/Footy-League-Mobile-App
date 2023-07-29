@@ -4,10 +4,10 @@ import 'package:intl/intl.dart';
 import '../../../../core/theme/text_theme.dart';
 import '../../../../core/utils/size_configs.dart';
 
-class PLStandingsWidget extends StatelessWidget {
+class ELCStandingsWidget extends StatelessWidget {
   final List<Map<String, dynamic>> standingsData;
 
-  const PLStandingsWidget({required this.standingsData, Key? key})
+  const ELCStandingsWidget({required this.standingsData, Key? key})
       : super(key: key);
 
   @override
@@ -46,7 +46,7 @@ class PLStandingsWidget extends StatelessWidget {
                   height: 15,
                 ),
 
-                // Section - PL Image and Name
+                // Section - ELC Image and Name
                 Row(
                   children: [
                     // Section - Image
@@ -65,7 +65,7 @@ class PLStandingsWidget extends StatelessWidget {
                             15,
                           ),
                           child: Image.asset(
-                            "assets/images/domesticPL.png",
+                            "assets/images/domesticChampionship.png",
                           ),
                         ),
                       ),
@@ -80,7 +80,7 @@ class PLStandingsWidget extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "English Premier League",
+                          "Sky Bet Championship",
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           style: textVerySmall300White,
@@ -130,7 +130,7 @@ class PLStandingsWidget extends StatelessWidget {
                             15,
                           ),
                           child: Image.asset(
-                            "assets/images/lastwinnerPL.png",
+                            "assets/images/lastwinnerELC.png",
                           ),
                         ),
                       ),
@@ -145,7 +145,7 @@ class PLStandingsWidget extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "Man City",
+                          "Burnley F.C.",
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           style: textVerySmall300White,
