@@ -24,15 +24,14 @@ class HomeView extends GetView<HomeController> {
         borderRadius: const BorderRadius.all(
           Radius.circular(10),
         ),
-        color:
-            controller.currentExplorerPage == index ? greenRYB : Colors.white,
+        color: controller.currentExplorePage == index ? greenRYB : Colors.white,
       ),
       margin: const EdgeInsets.symmetric(
         horizontal: 5,
       ),
       height: 10,
       curve: Curves.easeIn,
-      width: controller.currentExplorerPage == index ? 20 : 10,
+      width: controller.currentExplorePage == index ? 20 : 10,
     );
   }
 
@@ -83,7 +82,7 @@ class HomeView extends GetView<HomeController> {
           children: [
             // Section - Image explore
             SizedBox(
-              height: SizeConfig.screenW,
+              height: SizeConfig.screenW!,
               child: PageView.builder(
                 physics: const BouncingScrollPhysics(),
                 controller: controller.pageController,
@@ -96,13 +95,23 @@ class HomeView extends GetView<HomeController> {
                       duration: const Duration(
                         milliseconds: 200,
                       ),
-                      opacity: controller.currentExplorerPage == i ? 1.0 : 0.5,
+                      opacity: controller.currentExplorePage == i ? 1.0 : 0.5,
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 30,
-                        ),
-                        child: Image.asset(
-                          content.image,
+                        padding: const EdgeInsets.all(30),
+                        child: InkWell(
+                          onTap: () {
+                            Get.offNamed(
+                              Routes.STANDINGS,
+                              arguments: {
+                                "code": controller.contentsExplore[i].code,
+                                "sourceRoute": Routes.HOME,
+                                "backRoute": Routes.HOME,
+                              },
+                            );
+                          },
+                          child: Image.asset(
+                            content.image,
+                          ),
                         ),
                       ),
                     ),

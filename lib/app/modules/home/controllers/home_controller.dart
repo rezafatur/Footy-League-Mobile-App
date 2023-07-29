@@ -23,13 +23,13 @@ class HomeController extends GetxController {
   List<Continental> get contentsC => contentsContinental;
   List<International> get contentsI => contentsInternational;
 
-  final _currentExplorerPage = 0.obs;
-  int get currentExplorerPage => _currentExplorerPage.value;
+  final _currentExplorePage = 0.obs;
+  int get currentExplorePage => _currentExplorePage.value;
 
   final _pageController = PageController();
   PageController get pageController => _pageController;
 
   void onPageChanged(int value) {
-    _currentExplorerPage.value = value;
+    _currentExplorePage.value = value;
   }
 }

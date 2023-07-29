@@ -101,7 +101,16 @@ class SearchingView extends GetView<SearchingController> {
                           vertical: 15,
                         ),
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Get.offNamed(
+                              Routes.STANDINGS,
+                              arguments: {
+                                "code": item.code,
+                                "sourceRoute": Routes.SEARCHING,
+                                "backRoute": Routes.SEARCHING,
+                              },
+                            );
+                          },
                           child: Row(
                             children: [
                               // Section - Continental image
@@ -234,7 +243,16 @@ class SearchingView extends GetView<SearchingController> {
                           vertical: 15,
                         ),
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Get.offNamed(
+                              Routes.STANDINGS,
+                              arguments: {
+                                "code": item.code,
+                                "sourceRoute": Routes.SEARCHING,
+                                "backRoute": Routes.SEARCHING,
+                              },
+                            );
+                          },
                           child: Row(
                             children: [
                               // Section - International image
