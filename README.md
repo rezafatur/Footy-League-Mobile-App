@@ -17,4 +17,4 @@ YouTube : [Click Here](https://youtu.be/72lgXxKDEhw)
 
 ## Download
 
-v1.0 (Google Drive) : [Click Here](https://drive.google.com/file/d/1pmDGIUok7CFMiedmYNf8XXNqYwfWVzdw/view?usp=sharing)
+v1.0.1 (Google Drive) : [Click Here](https://drive.google.com/file/d/15e9ul53PtEOCiVSKUZ5PIHGzz8znMIQN/view?usp=sharing)
