@@ -1,35 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:footy_league/app/modules/continentalAll/views/continental_all_view.dart';
+import 'package:footy_league/app/modules/domesticAll/views/domestic_all_view.dart';
+import 'package:footy_league/app/modules/internationalAll/views/international_all_view.dart';
+import 'package:footy_league/app/modules/standings/controllers/standings_controller.dart';
+import 'package:footy_league/app/modules/standings/widgets/bl1_standings.dart';
+import 'package:footy_league/app/modules/standings/widgets/bsa_standings.dart';
+import 'package:footy_league/app/modules/standings/widgets/cl_standing.dart';
+import 'package:footy_league/app/modules/standings/widgets/cli_standings.dart';
+import 'package:footy_league/app/modules/standings/widgets/ded_standings.dart';
+import 'package:footy_league/app/modules/standings/widgets/ec_standings.dart';
+import 'package:footy_league/app/modules/standings/widgets/elc_standings.dart';
+import 'package:footy_league/app/modules/standings/widgets/fl1.standings.dart';
+import 'package:footy_league/app/modules/standings/widgets/pd_standings.dart';
+import 'package:footy_league/app/modules/standings/widgets/pl_standings.dart';
+import 'package:footy_league/app/modules/standings/widgets/ppl_standings.dart';
+import 'package:footy_league/app/modules/standings/widgets/sa_standings.dart';
+import 'package:footy_league/app/modules/standings/widgets/wc_standings.dart';
+import 'package:footy_league/app/routes/app_pages.dart';
+import 'package:footy_league/core/theme/colors.dart';
+import 'package:footy_league/core/theme/text_theme.dart';
+import 'package:footy_league/core/utils/size_configs.dart';
 import 'package:get/get.dart';
-import '../../../../core/theme/colors.dart';
-import '../../../../core/theme/text_theme.dart';
-import '../../../../core/utils/size_configs.dart';
-import '../../../routes/app_pages.dart';
-import '../controllers/standings_controller.dart';
-import '../widgets/bl1_standings.dart';
-import '../widgets/bsa_standings.dart';
-import '../widgets/cl_standing.dart';
-import '../widgets/cli_standings.dart';
-import '../widgets/ded_standings.dart';
-import '../widgets/ec_standings.dart';
-import '../widgets/elc_standings.dart';
-import '../widgets/fl1.standings.dart';
-import '../widgets/pd_standings.dart';
-import '../widgets/pl_standings.dart';
-import '../widgets/ppl_standings.dart';
-import '../widgets/sa_standings.dart';
-import '../widgets/wc_standings.dart';
 
 class StandingsView extends GetView<StandingsController> {
-  StandingsView({Key? key}) : super(key: key);
+  // Variable to store the league or competition code
+  final String code;
 
-  final String code = Get.arguments["code"];
-  final String sourceRoute = Get.arguments["sourceRoute"];
-  final String backRoute = Get.arguments["backRoute"];
+  // Variable to store the source route
+  final String sourceRoute;
+
+  // Variable to store the back route
+  final String backRoute;
+
+  const StandingsView({
+    Key? key,
+    required this.code,
+    required this.sourceRoute,
+    required this.backRoute,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // Initializing the screen width and height
     SizeConfig().init(context);
+
+    Get.put(
+      // Pass the code to the constructor
+      StandingsController(code),
+    );
 
     // Helper function to get the appropriate standings widget based on code
     Widget getStandingsWidget(String code) {
@@ -107,21 +125,24 @@ class StandingsView extends GetView<StandingsController> {
                       Get.offAllNamed(Routes.SEARCHING);
                       break;
                     case Routes.DOMESTIC_ALL:
-                      Get.offAllNamed(
-                        Routes.DOMESTIC_ALL,
-                        arguments: backRoute,
+                      Get.to(
+                        () => DomesticAllView(
+                          sourceRoute: backRoute,
+                        ),
                       );
                       break;
                     case Routes.CONTINENTAL_ALL:
-                      Get.offAllNamed(
-                        Routes.CONTINENTAL_ALL,
-                        arguments: backRoute,
+                      Get.to(
+                        () => ContinentalAllView(
+                          sourceRoute: backRoute,
+                        ),
                       );
                       break;
                     case Routes.INTERNATIONAL_ALL:
-                      Get.offAllNamed(
-                        Routes.INTERNATIONAL_ALL,
-                        arguments: backRoute,
+                      Get.to(
+                        () => InternationalAllView(
+                          sourceRoute: backRoute,
+                        ),
                       );
                       break;
                     default:

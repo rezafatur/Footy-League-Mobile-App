@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:footy_league/app/controllers/bottom_nav_controller.dart';
+import 'package:footy_league/app/data/models/home_continental_data.dart';
+import 'package:footy_league/app/data/models/home_domestic_data.dart';
+import 'package:footy_league/app/data/models/home_international_data.dart';
+import 'package:footy_league/app/modules/searching/controllers/searching_controller.dart';
+import 'package:footy_league/app/modules/standings/views/standings_view.dart';
+import 'package:footy_league/app/routes/app_pages.dart';
+import 'package:footy_league/core/theme/colors.dart';
+import 'package:footy_league/core/theme/text_theme.dart';
+import 'package:footy_league/core/utils/size_configs.dart';
 import 'package:get/get.dart';
-import '../../../../core/theme/colors.dart';
-import '../../../../core/theme/text_theme.dart';
-import '../../../../core/utils/size_configs.dart';
-import '../../../controllers/bottom_nav_controller.dart';
-import '../../../data/models/home_continental_data.dart';
-import '../../../data/models/home_domestic_data.dart';
-import '../../../data/models/home_international_data.dart';
-import '../../../routes/app_pages.dart';
-import '../controllers/searching_controller.dart';
 
 class SearchingView extends GetView<SearchingController> {
   SearchingView({Key? key}) : super(key: key);
@@ -22,9 +23,14 @@ class SearchingView extends GetView<SearchingController> {
     // Initializing the screen width and height
     SizeConfig().init(context);
 
+    Get.put(
+      SearchingController(),
+    );
+
     return Scaffold(
       // Section - App Bar (Searching)
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: greenRYB,
         actions: [
           Expanded(
@@ -102,13 +108,12 @@ class SearchingView extends GetView<SearchingController> {
                         ),
                         child: InkWell(
                           onTap: () {
-                            Get.offNamed(
-                              Routes.STANDINGS,
-                              arguments: {
-                                "code": item.code,
-                                "sourceRoute": Routes.SEARCHING,
-                                "backRoute": Routes.SEARCHING,
-                              },
+                            Get.to(
+                              () => StandingsView(
+                                code: item.code,
+                                sourceRoute: Routes.SEARCHING,
+                                backRoute: Routes.SEARCHING,
+                              ),
                             );
                           },
                           child: Row(
@@ -174,13 +179,12 @@ class SearchingView extends GetView<SearchingController> {
                         ),
                         child: InkWell(
                           onTap: () {
-                            Get.offNamed(
-                              Routes.STANDINGS,
-                              arguments: {
-                                "code": item.code,
-                                "sourceRoute": Routes.SEARCHING,
-                                "backRoute": Routes.SEARCHING,
-                              },
+                            Get.to(
+                              () => StandingsView(
+                                code: item.code,
+                                sourceRoute: Routes.SEARCHING,
+                                backRoute: Routes.SEARCHING,
+                              ),
                             );
                           },
                           child: Row(
@@ -246,13 +250,12 @@ class SearchingView extends GetView<SearchingController> {
                         ),
                         child: InkWell(
                           onTap: () {
-                            Get.offNamed(
-                              Routes.STANDINGS,
-                              arguments: {
-                                "code": item.code,
-                                "sourceRoute": Routes.SEARCHING,
-                                "backRoute": Routes.SEARCHING,
-                              },
+                            Get.to(
+                              () => StandingsView(
+                                code: item.code,
+                                sourceRoute: Routes.SEARCHING,
+                                backRoute: Routes.SEARCHING,
+                              ),
                             );
                           },
                           child: Row(

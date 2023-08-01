@@ -14,7 +14,7 @@ class ApiService {
       var response = await http.get(
         Uri.parse(url),
         headers: {
-          "X-Auth-Token": "724be64138604ce08372f27ca3796006",
+          "X-Auth-Token": "ENTER_YOUR_API_KEY_HERE",
         },
       );
 

@@ -1,7 +1,7 @@
+import 'package:footy_league/app/data/models/home_continental_data.dart';
+import 'package:footy_league/app/data/models/home_domestic_data.dart';
+import 'package:footy_league/app/data/models/home_international_data.dart';
 import 'package:get/get.dart';
-import '../../../data/models/home_continental_data.dart';
-import '../../../data/models/home_domestic_data.dart';
-import '../../../data/models/home_international_data.dart';
 
 class SearchingController extends GetxController {
   // Variables to store the filtered data

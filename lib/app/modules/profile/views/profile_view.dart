@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:footy_league/app/controllers/bottom_nav_controller.dart';
+import 'package:footy_league/app/modules/continentalAll/views/continental_all_view.dart';
+import 'package:footy_league/app/modules/domesticAll/views/domestic_all_view.dart';
+import 'package:footy_league/app/modules/information/views/information_view.dart';
+import 'package:footy_league/app/modules/internationalAll/views/international_all_view.dart';
+import 'package:footy_league/app/modules/profile/controllers/profile_controller.dart';
+import 'package:footy_league/app/routes/app_pages.dart';
+import 'package:footy_league/core/theme/colors.dart';
+import 'package:footy_league/core/theme/text_theme.dart';
+import 'package:footy_league/core/utils/size_configs.dart';
 import 'package:get/get.dart';
-import '../../../../core/theme/colors.dart';
-import '../../../../core/theme/text_theme.dart';
-import '../../../../core/utils/size_configs.dart';
-import '../../../controllers/bottom_nav_controller.dart';
-import '../../../routes/app_pages.dart';
-import '../../information/views/information_view.dart';
-import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
   ProfileView({Key? key}) : super(key: key);
@@ -24,6 +27,7 @@ class ProfileView extends GetView<ProfileController> {
     return Scaffold(
       // Section - App Bar
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: greenRYB,
         centerTitle: true,
         title: Text(
@@ -96,9 +100,10 @@ class ProfileView extends GetView<ProfileController> {
                         builder: (controller) {
                           return InkWell(
                             onTap: () {
-                              Get.offNamed(
-                                Routes.DOMESTIC_ALL,
-                                arguments: Routes.PROFILE,
+                              Get.to(
+                                () => const DomesticAllView(
+                                  sourceRoute: Routes.PROFILE,
+                                ),
                               );
                             },
                             child: SizedBox(
@@ -168,9 +173,10 @@ class ProfileView extends GetView<ProfileController> {
                         builder: (controller) {
                           return InkWell(
                             onTap: () {
-                              Get.offNamed(
-                                Routes.CONTINENTAL_ALL,
-                                arguments: Routes.PROFILE,
+                              Get.to(
+                                () => const ContinentalAllView(
+                                  sourceRoute: Routes.PROFILE,
+                                ),
                               );
                             },
                             child: SizedBox(
@@ -240,9 +246,10 @@ class ProfileView extends GetView<ProfileController> {
                         builder: (controller) {
                           return InkWell(
                             onTap: () {
-                              Get.offNamed(
-                                Routes.INTERNATIONAL_ALL,
-                                arguments: Routes.PROFILE,
+                              Get.to(
+                                () => const InternationalAllView(
+                                  sourceRoute: Routes.PROFILE,
+                                ),
                               );
                             },
                             child: SizedBox(
@@ -439,7 +446,8 @@ class ProfileView extends GetView<ProfileController> {
                                 onTap: () {
                                   Get.to(
                                     () => const InformationView(
-                                        fromProfile: true),
+                                      sourceRoute: Routes.PROFILE,
+                                    ),
                                   );
                                 },
                                 child: SizedBox(

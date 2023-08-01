@@ -1,5 +1,5 @@
+import 'package:footy_league/app/modules/searching/controllers/searching_controller.dart';
 import 'package:get/get.dart';
-import '../controllers/searching_controller.dart';
 
 class SearchingBinding extends Bindings {
   @override

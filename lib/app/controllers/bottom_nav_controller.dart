@@ -1,5 +1,5 @@
+import 'package:footy_league/app/routes/app_pages.dart';
 import 'package:get/get.dart';
-import '../routes/app_pages.dart';
 
 class BottomNavController extends GetxController {
   RxInt currentIndex = 0.obs;

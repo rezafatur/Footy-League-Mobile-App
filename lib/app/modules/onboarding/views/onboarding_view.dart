@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:footy_league/app/data/models/onboarding_data.dart';
+import 'package:footy_league/app/modules/onboarding/controllers/onboarding_controller.dart';
+import 'package:footy_league/app/routes/app_pages.dart';
 import 'package:footy_league/core/theme/colors.dart';
+import 'package:footy_league/core/theme/text_theme.dart';
+import 'package:footy_league/core/utils/size_configs.dart';
 import 'package:get/get.dart';
-import '../../../../core/theme/text_theme.dart';
-import '../../../../core/utils/size_configs.dart';
-import '../../../data/models/onboarding_data.dart';
-import '../../../routes/app_pages.dart';
-import '../controllers/onboarding_controller.dart';
 
 class OnboardingView extends GetView<OnboardingController> {
   const OnboardingView({Key? key}) : super(key: key);

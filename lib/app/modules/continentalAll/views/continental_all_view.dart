@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:footy_league/app/modules/continentalAll/controllers/continental_all_controller.dart';
+import 'package:footy_league/app/modules/standings/views/standings_view.dart';
+import 'package:footy_league/app/routes/app_pages.dart';
+import 'package:footy_league/core/theme/colors.dart';
+import 'package:footy_league/core/theme/text_theme.dart';
+import 'package:footy_league/core/utils/size_configs.dart';
 import 'package:get/get.dart';
-import '../../../../core/theme/colors.dart';
-import '../../../../core/theme/text_theme.dart';
-import '../../../../core/utils/size_configs.dart';
-import '../../../routes/app_pages.dart';
-import '../controllers/continental_all_controller.dart';
 
 class ContinentalAllView extends GetView<ContinentalAllController> {
-  ContinentalAllView({Key? key}) : super(key: key);
+  // Variable to store the source route
+  final String sourceRoute;
 
-  final String sourceRoute = Get.arguments;
+  const ContinentalAllView({
+    Key? key,
+    required this.sourceRoute,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -81,13 +86,12 @@ class ContinentalAllView extends GetView<ContinentalAllController> {
             (index) {
               return InkWell(
                 onTap: () {
-                  Get.offNamed(
-                    Routes.STANDINGS,
-                    arguments: {
-                      "code": controller.contentsC[index].code,
-                      "sourceRoute": Routes.CONTINENTAL_ALL,
-                      "backRoute": sourceRoute,
-                    },
+                  Get.to(
+                    () => StandingsView(
+                      code: controller.contentsC[index].code,
+                      sourceRoute: Routes.CONTINENTAL_ALL,
+                      backRoute: sourceRoute,
+                    ),
                   );
                 },
                 child: Container(

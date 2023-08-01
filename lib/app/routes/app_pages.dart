@@ -1,23 +1,22 @@
+import 'package:footy_league/app/modules/continentalAll/bindings/continental_all_binding.dart';
+import 'package:footy_league/app/modules/continentalAll/views/continental_all_view.dart';
+import 'package:footy_league/app/modules/domesticAll/bindings/domestic_all_binding.dart';
+import 'package:footy_league/app/modules/domesticAll/views/domestic_all_view.dart';
+import 'package:footy_league/app/modules/home/bindings/home_binding.dart';
+import 'package:footy_league/app/modules/home/views/home_view.dart';
+import 'package:footy_league/app/modules/information/bindings/information_binding.dart';
+import 'package:footy_league/app/modules/information/views/information_view.dart';
+import 'package:footy_league/app/modules/internationalAll/bindings/international_all_binding.dart';
+import 'package:footy_league/app/modules/internationalAll/views/international_all_view.dart';
+import 'package:footy_league/app/modules/onboarding/bindings/onboarding_binding.dart';
+import 'package:footy_league/app/modules/onboarding/views/onboarding_view.dart';
+import 'package:footy_league/app/modules/profile/bindings/profile_binding.dart';
+import 'package:footy_league/app/modules/profile/views/profile_view.dart';
+import 'package:footy_league/app/modules/searching/bindings/searching_binding.dart';
+import 'package:footy_league/app/modules/searching/views/searching_view.dart';
+import 'package:footy_league/app/modules/standings/bindings/standings_binding.dart';
+import 'package:footy_league/app/modules/standings/views/standings_view.dart';
 import 'package:get/get.dart';
-
-import '../modules/continentalAll/bindings/continental_all_binding.dart';
-import '../modules/continentalAll/views/continental_all_view.dart';
-import '../modules/domesticAll/bindings/domestic_all_binding.dart';
-import '../modules/domesticAll/views/domestic_all_view.dart';
-import '../modules/home/bindings/home_binding.dart';
-import '../modules/home/views/home_view.dart';
-import '../modules/information/bindings/information_binding.dart';
-import '../modules/information/views/information_view.dart';
-import '../modules/internationalAll/bindings/international_all_binding.dart';
-import '../modules/internationalAll/views/international_all_view.dart';
-import '../modules/onboarding/bindings/onboarding_binding.dart';
-import '../modules/onboarding/views/onboarding_view.dart';
-import '../modules/profile/bindings/profile_binding.dart';
-import '../modules/profile/views/profile_view.dart';
-import '../modules/searching/bindings/searching_binding.dart';
-import '../modules/searching/views/searching_view.dart';
-import '../modules/standings/bindings/standings_binding.dart';
-import '../modules/standings/views/standings_view.dart';
 
 part 'app_routes.dart';
 
@@ -41,23 +40,29 @@ class AppPages {
     GetPage(
       name: _Paths.INFORMATION,
       page: () => const InformationView(
-        fromProfile: false,
+        sourceRoute: "SOURCE ROUTE",
       ),
       binding: InformationBinding(),
     ),
     GetPage(
       name: _Paths.DOMESTIC_ALL,
-      page: () => DomesticAllView(),
+      page: () => const DomesticAllView(
+        sourceRoute: "SOURCE ROUTE",
+      ),
       binding: DomesticAllBinding(),
     ),
     GetPage(
       name: _Paths.CONTINENTAL_ALL,
-      page: () => ContinentalAllView(),
+      page: () => const ContinentalAllView(
+        sourceRoute: "Routes.HOME",
+      ),
       binding: ContinentalAllBinding(),
     ),
     GetPage(
       name: _Paths.INTERNATIONAL_ALL,
-      page: () => InternationalAllView(),
+      page: () => const InternationalAllView(
+        sourceRoute: "Routes.HOME",
+      ),
       binding: InternationalAllBinding(),
     ),
     GetPage(
@@ -74,8 +79,12 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.STANDINGS,
-      page: () => StandingsView(),
-      binding: StandingsBinding(),
+      page: () => const StandingsView(
+        code: "CODE",
+        sourceRoute: "SOURCE ROUTE",
+        backRoute: "BACK ROUTE",
+      ),
+      binding: StandingsBinding("CODE"),
     ),
   ];
 }

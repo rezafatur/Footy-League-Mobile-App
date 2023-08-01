@@ -1,6 +1,6 @@
 import 'dart:convert';
+import 'package:footy_league/app/data/services/api_service.dart';
 import 'package:get/get.dart';
-import '../../../data/services/api_service.dart';
 
 class StandingsController extends GetxController {
   // ApiService instance
@@ -12,10 +12,15 @@ class StandingsController extends GetxController {
   // Load active data
   RxBool isLoading = true.obs;
 
+  // Instance variable to store the league or competition code
+  final String code;
+
+  // Constructor to initialize the code
+  StandingsController(this.code);
+
   @override
   void onInit() {
     super.onInit();
-    String code = Get.arguments["code"];
     fetchStandingsData(code);
   }
 

@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:footy_league/app/controllers/bottom_nav_controller.dart';
 import 'package:footy_league/app/data/models/home_explore_data.dart';
+import 'package:footy_league/app/modules/continentalAll/views/continental_all_view.dart';
+import 'package:footy_league/app/modules/domesticAll/views/domestic_all_view.dart';
+import 'package:footy_league/app/modules/home/controllers/home_controller.dart';
+import 'package:footy_league/app/modules/information/views/information_view.dart';
+import 'package:footy_league/app/modules/internationalAll/views/international_all_view.dart';
+import 'package:footy_league/app/modules/standings/views/standings_view.dart';
 import 'package:footy_league/app/routes/app_pages.dart';
 import 'package:footy_league/core/theme/colors.dart';
+import 'package:footy_league/core/theme/text_theme.dart';
+import 'package:footy_league/core/utils/size_configs.dart';
 import 'package:get/get.dart';
-import '../../../../core/theme/text_theme.dart';
-import '../../../../core/utils/size_configs.dart';
-import '../../../controllers/bottom_nav_controller.dart';
-import '../../information/views/information_view.dart';
-import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   HomeView({Key? key}) : super(key: key);
@@ -43,6 +47,7 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
       // Section - App Bar
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: greenRYB,
         title: Padding(
           padding: const EdgeInsets.symmetric(
@@ -62,7 +67,7 @@ class HomeView extends GetView<HomeController> {
               onPressed: () {
                 Get.to(
                   () => const InformationView(
-                    fromProfile: false,
+                    sourceRoute: Routes.HOME,
                   ),
                 );
               },
@@ -100,13 +105,12 @@ class HomeView extends GetView<HomeController> {
                         padding: const EdgeInsets.all(30),
                         child: InkWell(
                           onTap: () {
-                            Get.offNamed(
-                              Routes.STANDINGS,
-                              arguments: {
-                                "code": controller.contentsExplore[i].code,
-                                "sourceRoute": Routes.HOME,
-                                "backRoute": Routes.HOME,
-                              },
+                            Get.to(
+                              () => StandingsView(
+                                code: controller.contentsExplore[i].code,
+                                sourceRoute: Routes.HOME,
+                                backRoute: Routes.HOME,
+                              ),
                             );
                           },
                           child: Image.asset(
@@ -154,9 +158,10 @@ class HomeView extends GetView<HomeController> {
                       // Section - See All button
                       InkWell(
                         onTap: () {
-                          Get.offNamed(
-                            Routes.DOMESTIC_ALL,
-                            arguments: Routes.HOME,
+                          Get.to(
+                            () => const DomesticAllView(
+                              sourceRoute: Routes.HOME,
+                            ),
                           );
                         },
                         child: Text(
@@ -188,9 +193,10 @@ class HomeView extends GetView<HomeController> {
                         if (index == 5 && controller.contentsD.length > 5) {
                           return InkWell(
                             onTap: () {
-                              Get.offNamed(
-                                Routes.DOMESTIC_ALL,
-                                arguments: Routes.HOME,
+                              Get.to(
+                                () => const DomesticAllView(
+                                  sourceRoute: Routes.HOME,
+                                ),
                               );
                             },
                             child: SizedBox(
@@ -215,13 +221,12 @@ class HomeView extends GetView<HomeController> {
                         }
                         return InkWell(
                           onTap: () {
-                            Get.offNamed(
-                              Routes.STANDINGS,
-                              arguments: {
-                                "code": controller.contentsD[index].code,
-                                "sourceRoute": Routes.HOME,
-                                "backRoute": Routes.HOME,
-                              },
+                            Get.to(
+                              () => StandingsView(
+                                code: controller.contentsD[index].code,
+                                sourceRoute: Routes.HOME,
+                                backRoute: Routes.HOME,
+                              ),
                             );
                           },
                           child: Container(
@@ -274,9 +279,10 @@ class HomeView extends GetView<HomeController> {
                       // Section - See All button
                       InkWell(
                         onTap: () {
-                          Get.offNamed(
-                            Routes.CONTINENTAL_ALL,
-                            arguments: Routes.HOME,
+                          Get.to(
+                            () => const ContinentalAllView(
+                              sourceRoute: Routes.HOME,
+                            ),
                           );
                         },
                         child: Text(
@@ -306,9 +312,10 @@ class HomeView extends GetView<HomeController> {
                         if (index == controller.contentsC.length) {
                           return InkWell(
                             onTap: () {
-                              Get.offNamed(
-                                Routes.CONTINENTAL_ALL,
-                                arguments: Routes.HOME,
+                              Get.to(
+                                () => const ContinentalAllView(
+                                  sourceRoute: Routes.HOME,
+                                ),
                               );
                             },
                             child: SizedBox(
@@ -333,13 +340,12 @@ class HomeView extends GetView<HomeController> {
                         }
                         return InkWell(
                           onTap: () {
-                            Get.offNamed(
-                              Routes.STANDINGS,
-                              arguments: {
-                                "code": controller.contentsC[index].code,
-                                "sourceRoute": Routes.HOME,
-                                "backRoute": Routes.HOME,
-                              },
+                            Get.to(
+                              () => StandingsView(
+                                code: controller.contentsC[index].code,
+                                sourceRoute: Routes.HOME,
+                                backRoute: Routes.HOME,
+                              ),
                             );
                           },
                           child: Container(
@@ -392,9 +398,10 @@ class HomeView extends GetView<HomeController> {
                       // Section - See All button
                       InkWell(
                         onTap: () {
-                          Get.offNamed(
-                            Routes.INTERNATIONAL_ALL,
-                            arguments: Routes.HOME,
+                          Get.to(
+                            () => const InternationalAllView(
+                              sourceRoute: Routes.HOME,
+                            ),
                           );
                         },
                         child: Text(
@@ -424,9 +431,10 @@ class HomeView extends GetView<HomeController> {
                         if (index == controller.contentsI.length) {
                           return InkWell(
                             onTap: () {
-                              Get.offNamed(
-                                Routes.INTERNATIONAL_ALL,
-                                arguments: Routes.HOME,
+                              Get.to(
+                                () => const InternationalAllView(
+                                  sourceRoute: Routes.HOME,
+                                ),
                               );
                             },
                             child: SizedBox(
@@ -451,13 +459,12 @@ class HomeView extends GetView<HomeController> {
                         }
                         return InkWell(
                           onTap: () {
-                            Get.offNamed(
-                              Routes.STANDINGS,
-                              arguments: {
-                                "code": controller.contentsI[index].code,
-                                "sourceRoute": Routes.HOME,
-                                "backRoute": Routes.HOME,
-                              },
+                            Get.to(
+                              () => StandingsView(
+                                code: controller.contentsI[index].code,
+                                sourceRoute: Routes.HOME,
+                                backRoute: Routes.HOME,
+                              ),
                             );
                           },
                           child: Container(

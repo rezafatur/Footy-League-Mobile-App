@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:footy_league/app/modules/information/controllers/information_controller.dart';
 import 'package:footy_league/app/routes/app_pages.dart';
 import 'package:footy_league/core/theme/colors.dart';
+import 'package:footy_league/core/theme/text_theme.dart';
+import 'package:footy_league/core/utils/size_configs.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-import '../../../../core/theme/text_theme.dart';
-import '../../../../core/utils/size_configs.dart';
-import '../controllers/information_controller.dart';
 
 class InformationView extends GetView<InformationController> {
-  // Parameter to determine the source from profile page
-  final bool fromProfile;
+  // Variable to store the source route
+  final String sourceRoute;
 
-  const InformationView({Key? key, required this.fromProfile})
-      : super(key: key);
+  const InformationView({
+    Key? key,
+    required this.sourceRoute,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +33,15 @@ class InformationView extends GetView<InformationController> {
             children: [
               GestureDetector(
                 onTap: () {
-                  if (fromProfile) {
-                    Get.offAllNamed(
-                      Routes.PROFILE,
-                    );
-                  } else {
-                    Get.offAllNamed(
-                      Routes.HOME,
-                    );
+                  switch (sourceRoute) {
+                    case Routes.HOME:
+                      Get.offAllNamed(Routes.HOME);
+                      break;
+                    case Routes.PROFILE:
+                      Get.offAllNamed(Routes.PROFILE);
+                      break;
+                    default:
+                      Get.offAllNamed(Routes.HOME);
                   }
                 },
                 child: Image.asset(
@@ -225,7 +228,7 @@ class InformationView extends GetView<InformationController> {
                 horizontal: 30,
               ),
               child: Text(
-                "Version 1.0",
+                "Version 1.0.1",
                 style: textVerySmall300White,
                 textAlign: TextAlign.center,
               ),
