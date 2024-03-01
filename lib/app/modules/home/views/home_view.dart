@@ -81,423 +81,420 @@ class HomeView extends GetView<HomeController> {
       ),
 
       // Section - Body
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            // Section - Image explore
-            SizedBox(
-              height: SizeConfig.screenW!,
-              child: PageView.builder(
-                physics: const BouncingScrollPhysics(),
-                controller: controller.pageController,
-                onPageChanged: controller.onPageChanged,
-                itemCount: controller.contentsE.length,
-                itemBuilder: (context, i) {
-                  Explore content = controller.contentsE[i];
-                  return Obx(
-                    () => AnimatedOpacity(
-                      duration: const Duration(
-                        milliseconds: 200,
-                      ),
-                      opacity: controller.currentExplorePage == i ? 1.0 : 0.5,
-                      child: Padding(
-                        padding: const EdgeInsets.all(30),
-                        child: InkWell(
-                          onTap: () {
-                            Get.to(
-                              () => StandingsView(
-                                code: controller.contentsExplore[i].code,
-                                sourceRoute: Routes.HOME,
-                                backRoute: Routes.HOME,
-                              ),
-                            );
-                          },
-                          child: Image.asset(
-                            content.image,
-                          ),
+      body: ListView(
+        children: [
+          // Section - Image explore
+          SizedBox(
+            height: SizeConfig.screenW!,
+            child: PageView.builder(
+              physics: const BouncingScrollPhysics(),
+              controller: controller.pageController,
+              onPageChanged: controller.onPageChanged,
+              itemCount: controller.contentsE.length,
+              itemBuilder: (context, i) {
+                Explore content = controller.contentsE[i];
+                return Obx(
+                  () => AnimatedOpacity(
+                    duration: const Duration(
+                      milliseconds: 200,
+                    ),
+                    opacity: controller.currentExplorePage == i ? 1.0 : 0.5,
+                    child: Padding(
+                      padding: const EdgeInsets.all(30),
+                      child: InkWell(
+                        onTap: () {
+                          Get.to(
+                            () => StandingsView(
+                              code: controller.contentsExplore[i].code,
+                              sourceRoute: Routes.HOME,
+                              backRoute: Routes.HOME,
+                            ),
+                          );
+                        },
+                        child: Image.asset(
+                          content.image,
                         ),
                       ),
                     ),
-                  );
-                },
+                  ),
+                );
+              },
+            ),
+          ),
+
+          // Section - Indicator
+          Obx(
+            () => Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(
+                controller.contentsE.length,
+                (int index) => dotsIndicator(index: index),
               ),
             ),
+          ),
+          const SizedBox(
+            height: 30,
+          ),
 
-            // Section - Indicator
-            Obx(
-              () => Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(
-                  controller.contentsE.length,
-                  (int index) => dotsIndicator(index: index),
+          // Section - Available Domestic Leagues
+          Column(
+            children: [
+              // Section - Title and See All button
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 30,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // Section - Title
+                    Text(
+                      "Domestic Leagues",
+                      style: textVerySmallBoldWhite,
+                    ),
+
+                    // Section - See All button
+                    InkWell(
+                      onTap: () {
+                        Get.to(
+                          () => const DomesticAllView(
+                            sourceRoute: Routes.HOME,
+                          ),
+                        );
+                      },
+                      child: Text(
+                        "See All",
+                        style: textVerySmallGreenRYB,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
+              const SizedBox(
+                height: 20,
+              ),
 
-            // Section - Available Domestic Leagues
-            Column(
-              children: [
-                // Section - Title and See All button
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 30,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // Section - Title
-                      Text(
-                        "Domestic Leagues",
-                        style: textVerySmallBoldWhite,
-                      ),
-
-                      // Section - See All button
-                      InkWell(
-                        onTap: () {
-                          Get.to(
-                            () => const DomesticAllView(
-                              sourceRoute: Routes.HOME,
-                            ),
-                          );
-                        },
-                        child: Text(
-                          "See All",
-                          style: textVerySmallGreenRYB,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-
-                // Section - Domestic Leagues contents
-                SingleChildScrollView(
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: 150,
-                    child: ListView.separated(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 30,
-                      ),
-                      scrollDirection: Axis.horizontal,
-                      itemCount: controller.contentsD.length > 5
-                          ? 6
-                          : controller.contentsD.length,
-                      itemBuilder: (context, index) {
-                        if (index == 5 && controller.contentsD.length > 5) {
-                          return InkWell(
-                            onTap: () {
-                              Get.to(
-                                () => const DomesticAllView(
-                                  sourceRoute: Routes.HOME,
-                                ),
-                              );
-                            },
-                            child: SizedBox(
-                              width: 150,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(
-                                    10,
-                                  ),
-                                ),
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    "See All",
-                                    style: textVerySmallBoldDarkJGreen,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        }
+              // Section - Domestic Leagues contents
+              SingleChildScrollView(
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 150,
+                  child: ListView.separated(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30,
+                    ),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: controller.contentsD.length > 5
+                        ? 6
+                        : controller.contentsD.length,
+                    itemBuilder: (context, index) {
+                      if (index == 5 && controller.contentsD.length > 5) {
                         return InkWell(
                           onTap: () {
                             Get.to(
-                              () => StandingsView(
-                                code: controller.contentsD[index].code,
+                              () => const DomesticAllView(
                                 sourceRoute: Routes.HOME,
-                                backRoute: Routes.HOME,
                               ),
                             );
                           },
-                          child: Container(
+                          child: SizedBox(
                             width: 150,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(
-                                10,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(
+                                  10,
+                                ),
                               ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(30),
-                              child: Image.asset(
-                                controller.contentsD[index].image,
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "See All",
+                                  style: textVerySmallBoldDarkJGreen,
+                                ),
                               ),
                             ),
                           ),
                         );
-                      },
-                      separatorBuilder: (BuildContext context, int index) =>
-                          const SizedBox(
-                        width: 10,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-
-            // Section - Available Continental Competitions
-            Column(
-              children: [
-                // Section - Title and See All button
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 30,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // Section - Title
-                      Text(
-                        "Continental Competitions",
-                        style: textVerySmallBoldWhite,
-                      ),
-
-                      // Section - See All button
-                      InkWell(
+                      }
+                      return InkWell(
                         onTap: () {
                           Get.to(
-                            () => const ContinentalAllView(
+                            () => StandingsView(
+                              code: controller.contentsD[index].code,
                               sourceRoute: Routes.HOME,
+                              backRoute: Routes.HOME,
                             ),
                           );
                         },
-                        child: Text(
-                          "See All",
-                          style: textVerySmallGreenRYB,
+                        child: Container(
+                          width: 150,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(
+                              10,
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(30),
+                            child: Image.asset(
+                              controller.contentsD[index].image,
+                            ),
+                          ),
                         ),
-                      ),
-                    ],
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, int index) =>
+                        const SizedBox(
+                      width: 10,
+                    ),
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 30,
+          ),
 
-                // Section - Continental Competitions contents
-                SingleChildScrollView(
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: 150,
-                    child: ListView.separated(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 30,
+          // Section - Available Continental Competitions
+          Column(
+            children: [
+              // Section - Title and See All button
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 30,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // Section - Title
+                    Text(
+                      "Continental Competitions",
+                      style: textVerySmallBoldWhite,
+                    ),
+
+                    // Section - See All button
+                    InkWell(
+                      onTap: () {
+                        Get.to(
+                          () => const ContinentalAllView(
+                            sourceRoute: Routes.HOME,
+                          ),
+                        );
+                      },
+                      child: Text(
+                        "See All",
+                        style: textVerySmallGreenRYB,
                       ),
-                      scrollDirection: Axis.horizontal,
-                      itemCount: controller.contentsC.length + 1,
-                      itemBuilder: (context, index) {
-                        if (index == controller.contentsC.length) {
-                          return InkWell(
-                            onTap: () {
-                              Get.to(
-                                () => const ContinentalAllView(
-                                  sourceRoute: Routes.HOME,
-                                ),
-                              );
-                            },
-                            child: SizedBox(
-                              width: 150,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(
-                                    10,
-                                  ),
-                                ),
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    "See All",
-                                    style: textVerySmallBoldDarkJGreen,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        }
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+
+              // Section - Continental Competitions contents
+              SingleChildScrollView(
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 150,
+                  child: ListView.separated(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30,
+                    ),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: controller.contentsC.length + 1,
+                    itemBuilder: (context, index) {
+                      if (index == controller.contentsC.length) {
                         return InkWell(
                           onTap: () {
                             Get.to(
-                              () => StandingsView(
-                                code: controller.contentsC[index].code,
+                              () => const ContinentalAllView(
                                 sourceRoute: Routes.HOME,
-                                backRoute: Routes.HOME,
                               ),
                             );
                           },
-                          child: Container(
+                          child: SizedBox(
                             width: 150,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(
-                                10,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(
+                                  10,
+                                ),
                               ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(30),
-                              child: Image.asset(
-                                controller.contentsC[index].image,
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "See All",
+                                  style: textVerySmallBoldDarkJGreen,
+                                ),
                               ),
                             ),
                           ),
                         );
-                      },
-                      separatorBuilder: (BuildContext context, int index) =>
-                          const SizedBox(
-                        width: 10,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-
-            // Section - Available International Competitions
-            Column(
-              children: [
-                // Section - Title and See All button
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 30,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // Section - Title
-                      Text(
-                        "International Competitions",
-                        style: textVerySmallBoldWhite,
-                      ),
-
-                      // Section - See All button
-                      InkWell(
+                      }
+                      return InkWell(
                         onTap: () {
                           Get.to(
-                            () => const InternationalAllView(
+                            () => StandingsView(
+                              code: controller.contentsC[index].code,
                               sourceRoute: Routes.HOME,
+                              backRoute: Routes.HOME,
                             ),
                           );
                         },
-                        child: Text(
-                          "See All",
-                          style: textVerySmallGreenRYB,
+                        child: Container(
+                          width: 150,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(
+                              10,
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(30),
+                            child: Image.asset(
+                              controller.contentsC[index].image,
+                            ),
+                          ),
                         ),
-                      ),
-                    ],
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, int index) =>
+                        const SizedBox(
+                      width: 10,
+                    ),
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 30,
+          ),
 
-                // Section - International Competitions contents
-                SingleChildScrollView(
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: 150,
-                    child: ListView.separated(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 30,
+          // Section - Available International Competitions
+          Column(
+            children: [
+              // Section - Title and See All button
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 30,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // Section - Title
+                    Text(
+                      "International Competitions",
+                      style: textVerySmallBoldWhite,
+                    ),
+
+                    // Section - See All button
+                    InkWell(
+                      onTap: () {
+                        Get.to(
+                          () => const InternationalAllView(
+                            sourceRoute: Routes.HOME,
+                          ),
+                        );
+                      },
+                      child: Text(
+                        "See All",
+                        style: textVerySmallGreenRYB,
                       ),
-                      scrollDirection: Axis.horizontal,
-                      itemCount: controller.contentsI.length + 1,
-                      itemBuilder: (context, index) {
-                        if (index == controller.contentsI.length) {
-                          return InkWell(
-                            onTap: () {
-                              Get.to(
-                                () => const InternationalAllView(
-                                  sourceRoute: Routes.HOME,
-                                ),
-                              );
-                            },
-                            child: SizedBox(
-                              width: 150,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(
-                                    10,
-                                  ),
-                                ),
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    "See All",
-                                    style: textVerySmallBoldDarkJGreen,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        }
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+
+              // Section - International Competitions contents
+              SingleChildScrollView(
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 150,
+                  child: ListView.separated(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30,
+                    ),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: controller.contentsI.length + 1,
+                    itemBuilder: (context, index) {
+                      if (index == controller.contentsI.length) {
                         return InkWell(
                           onTap: () {
                             Get.to(
-                              () => StandingsView(
-                                code: controller.contentsI[index].code,
+                              () => const InternationalAllView(
                                 sourceRoute: Routes.HOME,
-                                backRoute: Routes.HOME,
                               ),
                             );
                           },
-                          child: Container(
+                          child: SizedBox(
                             width: 150,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(
-                                10,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(
+                                  10,
+                                ),
                               ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(30),
-                              child: Image.asset(
-                                controller.contentsI[index].image,
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "See All",
+                                  style: textVerySmallBoldDarkJGreen,
+                                ),
                               ),
                             ),
                           ),
                         );
-                      },
-                      separatorBuilder: (BuildContext context, int index) =>
-                          const SizedBox(
-                        width: 10,
-                      ),
+                      }
+                      return InkWell(
+                        onTap: () {
+                          Get.to(
+                            () => StandingsView(
+                              code: controller.contentsI[index].code,
+                              sourceRoute: Routes.HOME,
+                              backRoute: Routes.HOME,
+                            ),
+                          );
+                        },
+                        child: Container(
+                          width: 150,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(
+                              10,
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(30),
+                            child: Image.asset(
+                              controller.contentsI[index].image,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, int index) =>
+                        const SizedBox(
+                      width: 10,
                     ),
                   ),
                 ),
-              ],
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+        ],
       ),
       // Background Color with Dark Jungle Green Color
       backgroundColor: darkJungleGreen,
